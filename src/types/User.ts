@@ -1,5 +1,6 @@
 export interface User {
   id: string
-  name: string | null
+  name: string
   documents?: string[]
+  password?: string
 }

@@ -1,9 +1,9 @@
 import { createSelector } from "@reduxjs/toolkit"
 import type { RootState } from "../store"
 
-export const selectUserState = (state: RootState) => state.user
+export const selectUserState = (state: RootState) => state.users
 
-export const selectUser = createSelector(
+export const selectUsers = createSelector(
   [selectUserState],
-  userState => userState.user,
+  userState => userState.users,
 )
