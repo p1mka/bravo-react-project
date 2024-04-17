@@ -16,7 +16,10 @@ export const userSlice = createSlice({
       state.name = action.payload.name
       state.documents = action.payload.documents
     },
+    clearUser() {
+      return initialState
+    },
   },
 })
 
-export const { setUser } = userSlice.actions
+export const { setUser, clearUser } = userSlice.actions

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { selectUsers } from "../app/redux/selectors/user-selector"
+import { selectUsers } from "../app/redux/selectors/users-selector"
 import { useAppSelector } from "../app/hooks"
 import { useAuth } from "../app/hooks/use-auth"
 import { useNavigate } from "react-router-dom"

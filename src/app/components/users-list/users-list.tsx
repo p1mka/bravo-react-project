@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import type { User } from "../../../types/User"
 import { useAppSelector } from "../../hooks"
-import { selectUsers } from "../../redux/selectors/user-selector"
+import { selectUsers } from "../../redux/selectors/users-selector"
 
 const UsersListContainer = ({ className }) => {
   const users: User[] | null = useAppSelector(selectUsers)

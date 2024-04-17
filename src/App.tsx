@@ -5,10 +5,13 @@ import { setUsers } from "./app/redux/slices/users-slice"
 import { useAppDispatch } from "./app/hooks"
 import { useEffect } from "react"
 import styled from "styled-components"
+import { Header } from "./app/components"
 
 const AppContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  width: 100%;
 `
 
 const App: React.FC = () => {
@@ -23,6 +26,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <AppContainer>
+        <Header />
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/request" element={<MainPage />} />

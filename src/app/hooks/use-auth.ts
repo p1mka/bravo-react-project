@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../hooks"
-import { setUser } from "../redux/slices"
+import { clearUser, setUser } from "../redux/slices"
 import { useServerRequest } from "./use-server-request"
 
 export interface ILogin {
@@ -26,11 +26,9 @@ export const useAuth = () => {
     }
     return { auth: false }
   }
-  //   const logout = async () => {
-  //     await logoutUser()
-  //     // dispatch(clearUser())
-  //     // dispatch(clearFavorites())
-  //   }
+  const logout = async () => {
+    dispatch(clearUser())
+  }
 
-  return { login }
+  return { login, logout }
 }
