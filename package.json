@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently \"vite\" \"json-server -w src/db/db.json --port 3001\"",
     "start": "concurrently \"vite\" \"json-server -w src/db/db.json --port 3001\"",
-    "build": "tsc && vite build && npm run start-server",
+    "build": "tsc && vite build ",
     "start-server": "json-server -w src/db/db.json",
     "preview": "vite preview",
     "test": "vitest run",
