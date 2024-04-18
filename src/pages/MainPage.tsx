@@ -1,19 +1,13 @@
-import { UserForm } from "../app/components"
 import styled from "styled-components"
-import type { ICommonProps } from "../types/App"
+import type { ICommonProps } from "../types"
+import { Outlet } from "react-router-dom"
 
 const MainPageContainer: React.FC<ICommonProps> = ({ className }) => {
   return (
     <div className={className}>
-      <h1>Форма заявки на документ</h1>
-      <UserForm />
+      <Outlet />
     </div>
   )
 }
 
-export const MainPage = styled(MainPageContainer)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`
+export const MainPage = styled(MainPageContainer)``

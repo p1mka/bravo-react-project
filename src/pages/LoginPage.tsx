@@ -33,7 +33,7 @@ const LoginPageContainer: React.FC<ICommonProps> = ({ className }) => {
     e.preventDefault()
     const { auth, error } = await login(selectedUserId, password)
     if (auth) {
-      navigate("/request")
+      navigate("/main/request")
     }
     if (error) {
       setErr(error)
@@ -42,8 +42,8 @@ const LoginPageContainer: React.FC<ICommonProps> = ({ className }) => {
 
   return (
     <div className={className}>
-      <h2>Авторизация</h2>
       <form onSubmit={handleLogin}>
+        <h2>Авторизация</h2>
         <div>
           <select name="userName" onChange={handleUserChange}>
             <option value="">Выберите ФИО Конструктора</option>
@@ -76,15 +76,21 @@ const LoginPageContainer: React.FC<ICommonProps> = ({ className }) => {
 export const LoginPage = styled(LoginPageContainer)`
   display: flex;
   flex-direction: column;
-  height: 100vh;
   justify-content: center;
   align-items: center;
 
   & form {
+    padding: 4rem;
+    margin-top: 3rem;
+    border-radius: 0.5rem;
     display: flex;
     gap: 1rem;
     flex-direction: column;
     align-items: center;
+    background: #fff;
+    box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.75);
   }
   & input,
   select {

@@ -20,12 +20,13 @@ const UserFormContainer: React.FC<ICommonProps> = ({ className }) => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const { error } = await addDocument(user.id, documentDescription)
-    if (error) {
-      return setStatus(error)
+    try {
+      await addDocument(user.id, documentDescription)
+      setDocumentDescription("")
+      setStatus(`Заявка на документ ${documentDescription} успешно отправлена!`)
+    } catch (error: any) {
+      setStatus(error.message)
     }
-    setDocumentDescription("")
-    setStatus(`Заявка на документ ${documentDescription} успешно отправлена!`)
   }
 
   return (
@@ -34,7 +35,7 @@ const UserFormContainer: React.FC<ICommonProps> = ({ className }) => {
         Конструктор:<b>{user.name}</b>
       </p>
       <div className="description">
-        Наименование документа:
+        <p>Наименование документа</p>
         <input
           placeholder="Введите название документа"
           value={documentDescription}
@@ -49,20 +50,32 @@ const UserFormContainer: React.FC<ICommonProps> = ({ className }) => {
 
 export const UserForm = styled(UserFormContainer)`
   display: flex;
+  background: #fff;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 40%;
-  border: 1px solid black;
   border-radius: 0.5rem;
   padding: 1.5rem;
-  gap: 1.5rem;
+  gap: 1rem;
+  font-size: 14px;
+  box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.75);
 
   & .description {
     display: flex;
-    /* flex-direction: column; */
+    flex-direction: column;
     justify-content: center;
     text-align: center;
     width: 100%;
+  }
+  & input {
+    padding: 0.5rem;
+    font-size: 16px;
+  }
+
+  & b {
+    font-size: 18px;
   }
 `

@@ -19,102 +19,78 @@
   "documents": [
     {
       "id": "001",
-      "owners": [
-        "1",
-        "2"
-      ],
+      "owners": ["1", "2"],
       "description": "ГОСТ 231"
     },
     {
       "id": "002",
-      "owners": [
-        "1",
-        "2"
-      ],
+      "owners": ["1", "2"],
       "description": "ГОСТ 2112"
     },
     {
       "id": "003",
-      "owners": [
-        "1",
-        "2"
-      ],
+      "owners": ["1", "2"],
       "description": "ГОСТ 333"
     },
     {
       "id": "004",
-      "owners": [
-        "2"
-      ],
+      "owners": ["2"],
       "description": "ГОСТ 1"
     },
     {
       "id": "005",
-      "owners": [
-        "1",
-        "2"
-      ],
+      "owners": ["1", "2"],
       "description": "ГОСТ 2"
     },
     {
       "id": "006",
-      "owners": [
-        "2"
-      ],
+      "owners": ["2"],
       "description": "ГОСТ 3"
     },
     {
       "id": "007",
-      "owners": [
-        "3",
-        "2"
-      ],
+      "owners": ["3", "2"],
       "description": "ГОСТ 13383"
     },
     {
       "id": "008",
-      "owners": [
-        "1",
-        "2",
-        "3"
-      ],
+      "owners": ["1", "2", "3"],
       "description": "ГОСТ 214"
     },
     {
       "id": "009",
-      "owners": [
-        "3"
-      ],
+      "owners": ["3"],
       "description": "ГОСТ 340"
     },
     {
       "id": "1713432499846",
-      "owners": [
-        "2",
-        "1"
-      ],
+      "owners": ["2", "1"],
       "description": "ГОСТ 211222"
     },
     {
-      "id": "1713434226706",
-      "owners": [
-        "2"
-      ],
-      "description": ""
-    },
-    {
       "id": "1713434390208",
-      "owners": [
-        "2"
-      ],
+      "owners": ["2"],
       "description": "ГОСТ 2113"
     },
     {
       "id": "1713435847120",
-      "owners": [
-        "2"
-      ],
+      "owners": ["2"],
       "description": "ГОСТ 211345"
+    },
+    {
+      "id": "1713437230441",
+      "owners": ["1"],
+      "description": "ГОСТ 21121"
+    },
+    {
+      "id": "1713439656878",
+      "owners": ["1"],
+      "description": "ГОСТ"
+    },
+    {
+      "id": "1713440597658",
+      "owners": ["1"],
+      "description": "123"
     }
   ]
 }

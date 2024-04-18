@@ -1,6 +1,13 @@
 import type { Document, User } from "../../types"
+import { useAppDispatch } from "../hooks"
+import { setDocuments } from "../redux/slices"
+
+export interface IRequest {
+  error?: any
+}
 
 export const useServerRequest = () => {
+  const dispatch = useAppDispatch()
   const USERS_URL = "http://localhost:3000/users"
   const DOCUMENTS_URL = "http://localhost:3000/documents"
 
@@ -31,13 +38,13 @@ export const useServerRequest = () => {
   }
 
   const updateDocumentOwners = async (document: Document) => {
-    await fetch(`${DOCUMENTS_URL}/${document.id}`, {
+    return await fetch(`${DOCUMENTS_URL}/${document.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json;charset=utf-8" },
       body: JSON.stringify({
         owners: document.owners,
       }),
-    })
+    }).then(res => res.json())
   }
 
   const addDocument = async (userId: string, description: string) => {
@@ -50,9 +57,13 @@ export const useServerRequest = () => {
     if (existingDocument) {
       if (!existingDocument.owners.includes(userId)) {
         existingDocument.owners.push(userId)
-        return await updateDocumentOwners(existingDocument)
+        return await updateDocumentOwners(existingDocument).then(documents =>
+          dispatch(setDocuments(documents)),
+        )
       } else {
-        return { error: "Вы уже подавали заявку на этот документ!" }
+        throw new Error(
+          "Вы уже отправляли заявку на этот документ, она уже была учтена",
+        )
       }
     }
 
@@ -65,6 +76,8 @@ export const useServerRequest = () => {
         description,
       }),
     })
+      .then(res => res.json())
+      .then(documents => dispatch(setDocuments(documents)))
   }
 
   return { loginUser, getUsersListFromDb, addDocument }

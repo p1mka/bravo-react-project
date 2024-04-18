@@ -1,18 +1,28 @@
 import "./App.css"
 import { Route, Routes } from "react-router-dom"
-import { LoginPage, MainPage } from "./pages"
+import { LoginPage, MainPage, RequestPage, SummaryPage } from "./pages"
 import { setUsers } from "./app/redux/slices/users-slice"
 import { useAppDispatch } from "./app/hooks"
 import { useEffect, useLayoutEffect } from "react"
-import styled from "styled-components"
 import { Header } from "./app/components"
-import { setUser } from "./app/redux/slices"
+import { setDocuments, setUser } from "./app/redux/slices"
+import styled from "styled-components"
 
 const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   width: 100%;
+  height: 100vh;
+  background-color: #e5e5f7;
+  opacity: 0.8;
+  background-size: 10px 10px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #dedede 0,
+    #dedede 1px,
+    #e5e5f7 0,
+    #e5e5f7 50%
+  );
 `
 
 const App: React.FC = () => {
@@ -37,18 +47,27 @@ const App: React.FC = () => {
   }, [dispatch])
 
   useEffect(() => {
-    fetch("http://localhost:3000/users")
-      .then(res => res.json())
-      .then(data => dispatch(setUsers(data)))
-      .catch(e => console.log(e))
+    const getData = async () => {
+      await Promise.all([
+        fetch("http://localhost:3000/users").then(res => res.json()),
+        fetch("http://localhost:3000/documents").then(res => res.json()),
+      ]).then(([userData, documentData]) => {
+        dispatch(setUsers(userData))
+        dispatch(setDocuments(documentData))
+      })
+    }
+    getData()
   }, [dispatch])
   return (
     <div className="App">
+      <Header />
       <AppContainer>
-        <Header />
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/request" element={<MainPage />} />
+          <Route path="/main" element={<MainPage />}>
+            <Route path="request" element={<RequestPage />} />
+            <Route path="summary" element={<SummaryPage />} />
+          </Route>
           <Route path="*" element={<div>404</div>} />
         </Routes>
       </AppContainer>
