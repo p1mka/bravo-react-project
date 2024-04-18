@@ -1,8 +1,7 @@
-import styled from "styled-components"
 import type { ICommonProps } from "../types"
 import { Outlet } from "react-router-dom"
 
-const MainPageContainer: React.FC<ICommonProps> = ({ className }) => {
+const MainPage: React.FC<ICommonProps> = ({ className }) => {
   return (
     <div className={className}>
       <Outlet />
@@ -10,4 +9,4 @@ const MainPageContainer: React.FC<ICommonProps> = ({ className }) => {
   )
 }
 
-export const MainPage = styled(MainPageContainer)``
+export default MainPage

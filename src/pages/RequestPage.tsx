@@ -11,9 +11,11 @@ const RequestPageContainer: React.FC<ICommonProps> = ({ className }) => {
   )
 }
 
-export const RequestPage = styled(RequestPageContainer)`
+const RequestPage = styled(RequestPageContainer)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `
+
+export default RequestPage

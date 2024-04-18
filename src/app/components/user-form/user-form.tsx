@@ -4,12 +4,14 @@ import { selectUserState } from "../../redux/selectors/user-selector"
 import { useAppSelector } from "../../hooks"
 import { useServerRequest } from "../../hooks/use-server-request"
 import styled from "styled-components"
+import { Loader } from "../loader/loader"
 
 const UserFormContainer: React.FC<ICommonProps> = ({ className }) => {
   const user: User = useAppSelector(selectUserState)
   const { addDocument } = useServerRequest()
   const [status, setStatus] = useState("")
   const [documentDescription, setDocumentDescription] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (status) {
@@ -20,35 +22,47 @@ const UserFormContainer: React.FC<ICommonProps> = ({ className }) => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setIsLoading(true)
     try {
       await addDocument(user.id, documentDescription)
       setDocumentDescription("")
       setStatus(`Заявка на документ ${documentDescription} успешно отправлена!`)
     } catch (error: any) {
       setStatus(error.message)
+    } finally {
+      setIsLoading(false)
     }
   }
 
   return (
     <form className={className} onSubmit={onSubmit}>
-      <p>
-        Конструктор:<b>{user.name}</b>
-      </p>
-      <div className="description">
-        <p>Наименование документа</p>
-        <input
-          placeholder="Введите название документа"
-          value={documentDescription}
-          onChange={onInputChange}
-        />
-      </div>
-      <button type="submit">Заказать документ</button>
-      {status && <h3>{status}</h3>}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <p>
+            Конструктор:<b>{user.name}</b>
+          </p>
+          <div className="description">
+            <p>Наименование документа</p>
+            <input
+              placeholder="Введите название документа"
+              value={documentDescription}
+              onChange={onInputChange}
+            />
+          </div>
+          <button type="submit" disabled={!documentDescription.length}>
+            Заказать документ
+          </button>
+          {status && <h3>{status}</h3>}
+        </>
+      )}
     </form>
   )
 }
 
 export const UserForm = styled(UserFormContainer)`
+  min-height: 200px;
   display: flex;
   background: #fff;
   flex-direction: column;

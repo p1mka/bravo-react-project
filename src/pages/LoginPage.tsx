@@ -73,7 +73,7 @@ const LoginPageContainer: React.FC<ICommonProps> = ({ className }) => {
   )
 }
 
-export const LoginPage = styled(LoginPageContainer)`
+const LoginPage = styled(LoginPageContainer)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,3 +104,5 @@ export const LoginPage = styled(LoginPageContainer)`
     justify-content: space-between;
   }
 `
+
+export default LoginPage

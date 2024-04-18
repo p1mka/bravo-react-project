@@ -16,7 +16,24 @@ export const documentsSlice = createSlice({
     setDocuments(state, action) {
       state.documents = action.payload
     },
+    pushDocument(state, action) {
+      state.documents.push(action.payload)
+    },
+    updateDocument(state, action) {
+      const { documentId, newOwners } = action.payload
+
+      const documentToUpdate = state.documents.find(
+        document => document.id === documentId,
+      )
+      if (documentToUpdate) {
+        documentToUpdate.owners = newOwners
+      }
+    },
+    clearDocuments() {
+      return initialState
+    },
   },
 })
 
-export const { setDocuments } = documentsSlice.actions
+export const { setDocuments, pushDocument, updateDocument, clearDocuments } =
+  documentsSlice.actions

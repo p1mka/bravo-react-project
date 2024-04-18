@@ -1,6 +1,6 @@
 import type { Document, User } from "../../types"
 import { useAppDispatch } from "../hooks"
-import { setDocuments } from "../redux/slices"
+import { pushDocument, updateDocument } from "../redux/slices"
 
 export interface IRequest {
   error?: any
@@ -57,9 +57,14 @@ export const useServerRequest = () => {
     if (existingDocument) {
       if (!existingDocument.owners.includes(userId)) {
         existingDocument.owners.push(userId)
-        return await updateDocumentOwners(existingDocument).then(documents =>
-          dispatch(setDocuments(documents)),
+        const newDocument = await updateDocumentOwners(existingDocument)
+        dispatch(
+          updateDocument({
+            documentId: newDocument.id,
+            newOwners: newDocument.owners,
+          }),
         )
+        return newDocument
       } else {
         throw new Error(
           "Вы уже отправляли заявку на этот документ, она уже была учтена",
@@ -77,8 +82,10 @@ export const useServerRequest = () => {
       }),
     })
       .then(res => res.json())
-      .then(documents => dispatch(setDocuments(documents)))
+      .then(document => {
+        return dispatch(pushDocument(document))
+      })
   }
 
-  return { loginUser, getUsersListFromDb, addDocument }
+  return { loginUser, getUsersListFromDb, addDocument, getDocumentsFromDb }
 }

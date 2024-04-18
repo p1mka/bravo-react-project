@@ -1,27 +1,27 @@
-# vite-template-redux
+# Тестовое задание для Браво-софт
 
-Uses [Vite](https://vitejs.dev/), [Vitest](https://vitest.dev/), and [React Testing Library](https://github.com/testing-library/react-testing-library) to create a modern [React](https://react.dev/) app compatible with [Create React App](https://create-react-app.dev/)
+### Задача
 
-```sh
-npx degit reduxjs/redux-templates/packages/vite-template-redux my-app
-```
+- Реализовать web-приложение для создания и контроля учета заявок на недостающие документы.
 
-## Goals
+### Реализация
 
-- Easy migration from Create React App or Vite
-- As beginner friendly as Create React App
-- Optimized performance compared to Create React App
-- Customizable without ejecting
+- Разработана система аутентификации
+- Добавлена страница для оформления заявки на документ
+- Добавлена страница с таблицей учета уже созданных заявок
+- Развернута база данных для хранения информации о пользователях и документах.
+- Добавлен приватный роутинг для контроля доступа к страницам приложения.
 
-## Scripts
+### Инструменты
 
-- `dev`/`start` - start dev server and open browser
-- `build` - build for production
-- `preview` - locally preview production build
-- `test` - launch test runner
+- ReactJS
+- lazy, suspense
+- Redux Toolkit
+- react-router-dom
+- TypeScript
+- JSON Server
+- styled-components
 
-## Inspiration
+### Самоконтроль
 
-- [Create React App](https://github.com/facebook/create-react-app/tree/main/packages/cra-template)
-- [Vite](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react)
-- [Vitest](https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib)
+На реализацию потрачено ~16 часов

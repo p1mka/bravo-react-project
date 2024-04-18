@@ -1,11 +1,10 @@
 import "./App.css"
-import { Route, Routes } from "react-router-dom"
-import { LoginPage, MainPage, RequestPage, SummaryPage } from "./pages"
 import { setUsers } from "./app/redux/slices/users-slice"
 import { useAppDispatch } from "./app/hooks"
 import { useEffect, useLayoutEffect } from "react"
 import { Header } from "./app/components"
 import { setDocuments, setUser } from "./app/redux/slices"
+import { CustomRouter } from "./app/routes"
 import styled from "styled-components"
 
 const AppContainer = styled.div`
@@ -62,14 +61,7 @@ const App: React.FC = () => {
     <div className="App">
       <Header />
       <AppContainer>
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/main" element={<MainPage />}>
-            <Route path="request" element={<RequestPage />} />
-            <Route path="summary" element={<SummaryPage />} />
-          </Route>
-          <Route path="*" element={<div>404</div>} />
-        </Routes>
+        <CustomRouter />
       </AppContainer>
     </div>
   )

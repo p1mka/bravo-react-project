@@ -1,8 +1,8 @@
 import { SummaryTable } from "../app/components"
-import type { ICommonProps } from "../types/App"
+import type { ICommonProps, Document } from "../types"
 import { useAppSelector } from "../app/hooks"
 import { selectDocuments } from "../app/redux/selectors/documents-selector"
-import type { Document } from "../types"
+
 import styled from "styled-components"
 
 const SummaryPageContainer: React.FC<ICommonProps> = ({ className }) => {
@@ -19,9 +19,11 @@ const SummaryPageContainer: React.FC<ICommonProps> = ({ className }) => {
   )
 }
 
-export const SummaryPage = styled(SummaryPageContainer)`
+const SummaryPage = styled(SummaryPageContainer)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `
+
+export default SummaryPage

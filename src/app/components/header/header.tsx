@@ -58,6 +58,7 @@ export const Header = styled(HeaderContainer)`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 0.5rem;
   }
   & h3 {
     margin: 0;
