@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "concurrently \"vite\" \"json-server -w src/db/db.json\"",
     "start": "concurrently \"vite\" \"json-server -w src/db/db.json\"",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && npm run start-server",
+    "start-server": "json-server -w src/db/db.json",
     "preview": "vite preview",
     "test": "vitest run",
     "format": "prettier --write .",
