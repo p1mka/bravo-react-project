@@ -3,9 +3,10 @@ import { Route, Routes } from "react-router-dom"
 import { LoginPage, MainPage } from "./pages"
 import { setUsers } from "./app/redux/slices/users-slice"
 import { useAppDispatch } from "./app/hooks"
-import { useEffect } from "react"
+import { useEffect, useLayoutEffect } from "react"
 import styled from "styled-components"
 import { Header } from "./app/components"
+import { setUser } from "./app/redux/slices"
 
 const AppContainer = styled.div`
   display: flex;
@@ -16,6 +17,24 @@ const AppContainer = styled.div`
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch()
+
+  useLayoutEffect(() => {
+    const currentUserDataJSON = localStorage.getItem("user")
+
+    if (!currentUserDataJSON) {
+      return
+    }
+
+    const currentUserData = JSON.parse(currentUserDataJSON)
+
+    dispatch(
+      setUser({
+        id: currentUserData.id,
+        name: currentUserData.name,
+        documents: currentUserData.documents,
+      }),
+    )
+  }, [dispatch])
 
   useEffect(() => {
     fetch("http://localhost:3000/users")

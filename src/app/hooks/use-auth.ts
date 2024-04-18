@@ -19,6 +19,7 @@ export const useAuth = () => {
         dispatch(
           setUser({ id: user.id, name: user.name, documents: user.documents }),
         )
+        localStorage.setItem("user", JSON.stringify(user))
         return { auth: true, error: null }
       }
     } catch (err: any) {
@@ -28,6 +29,7 @@ export const useAuth = () => {
   }
   const logout = async () => {
     dispatch(clearUser())
+    localStorage.removeItem("user")
   }
 
   return { login, logout }

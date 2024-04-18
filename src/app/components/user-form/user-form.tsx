@@ -1,22 +1,38 @@
 import { useState } from "react"
-import type { ICommonProps } from "../../../types/App"
+import type { ICommonProps, User } from "../../../types"
+import { selectUserState } from "../../redux/selectors/user-selector"
+import { useAppSelector } from "../../hooks"
+import { useServerRequest } from "../../hooks/use-server-request"
 import styled from "styled-components"
 
 const UserFormContainer: React.FC<ICommonProps> = ({ className }) => {
+  const user: User = useAppSelector(selectUserState)
+  const { addDocument } = useServerRequest()
+  const [status, setStatus] = useState("")
   const [documentDescription, setDocumentDescription] = useState("")
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (status) {
+      setStatus("")
+    }
     setDocumentDescription(e.target.value)
   }
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const selectedUserName = e.currentTarget.userName.value
+    const { error } = await addDocument(user.id, documentDescription)
+    if (error) {
+      return setStatus(error)
+    }
+    setDocumentDescription("")
+    setStatus(`Заявка на документ ${documentDescription} успешно отправлена!`)
   }
 
   return (
     <form className={className} onSubmit={onSubmit}>
-      {/* <UsersList /> */}
+      <p>
+        Конструктор:<b>{user.name}</b>
+      </p>
       <div className="description">
         Наименование документа:
         <input
@@ -26,6 +42,7 @@ const UserFormContainer: React.FC<ICommonProps> = ({ className }) => {
         />
       </div>
       <button type="submit">Заказать документ</button>
+      {status && <h3>{status}</h3>}
     </form>
   )
 }
@@ -43,7 +60,8 @@ export const UserForm = styled(UserFormContainer)`
 
   & .description {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+    justify-content: center;
     text-align: center;
     width: 100%;
   }
