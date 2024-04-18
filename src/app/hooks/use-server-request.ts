@@ -8,8 +8,8 @@ export interface IRequest {
 
 export const useServerRequest = () => {
   const dispatch = useAppDispatch()
-  const USERS_URL = "http://localhost:3000/users"
-  const DOCUMENTS_URL = "http://localhost:3000/documents"
+  const USERS_URL = "http://localhost:3001/users"
+  const DOCUMENTS_URL = "http://localhost:3001/documents"
 
   const getUsersListFromDb = async () => {
     return await fetch(USERS_URL)

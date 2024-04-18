@@ -48,8 +48,8 @@ const App: React.FC = () => {
   useEffect(() => {
     const getData = async () => {
       await Promise.all([
-        fetch("http://localhost:3000/users").then(res => res.json()),
-        fetch("http://localhost:3000/documents").then(res => res.json()),
+        fetch("http://localhost:3001/users").then(res => res.json()),
+        fetch("http://localhost:3001/documents").then(res => res.json()),
       ]).then(([userData, documentData]) => {
         dispatch(setUsers(userData))
         dispatch(setDocuments(documentData))
