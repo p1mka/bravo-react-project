@@ -19,47 +19,74 @@
   "documents": [
     {
       "id": "001",
-      "owners": ["1", "2"],
+      "owners": [
+        "1",
+        "2"
+      ],
       "description": "ГОСТ 231"
     },
     {
       "id": "002",
-      "owners": ["1", "2"],
+      "owners": [
+        "1",
+        "2",
+        "3"
+      ],
       "description": "ГОСТ 2112"
     },
     {
       "id": "003",
-      "owners": ["1", "2"],
+      "owners": [
+        "1",
+        "2"
+      ],
       "description": "ГОСТ 333"
     },
     {
       "id": "004",
-      "owners": ["2"],
+      "owners": [
+        "2"
+      ],
       "description": "ГОСТ 1"
     },
     {
       "id": "005",
-      "owners": ["1", "2"],
+      "owners": [
+        "1",
+        "2"
+      ],
       "description": "ГОСТ 2"
     },
     {
       "id": "006",
-      "owners": ["2"],
+      "owners": [
+        "2"
+      ],
       "description": "ГОСТ 3"
     },
     {
       "id": "007",
-      "owners": ["3", "2"],
+      "owners": [
+        "3",
+        "2"
+      ],
       "description": "ГОСТ 13383"
     },
     {
       "id": "008",
-      "owners": ["1", "2", "3"],
+      "owners": [
+        "1",
+        "2",
+        "3"
+      ],
       "description": "ГОСТ 214"
     },
     {
       "id": "009",
-      "owners": ["3"],
+      "owners": [
+        "3",
+        "2"
+      ],
       "description": "ГОСТ 340"
     }
   ]
